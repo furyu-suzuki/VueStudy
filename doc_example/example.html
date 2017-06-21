@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/vue"></script>
+    <title>Title</title>
+</head>
+<body>
+    <div id="example">
+        <p>Original message: "{{ message }}"</p>
+        <p>Computed reversed message: "{{ reversedMessage }}"</p>
+        <p>Computed reverse message: "{{ reverseMessage() }}"</p>
+    </div>
+
+    <script>
+        var vm = new Vue({
+          el: '#example',
+          data: {
+            message: 'Hello'
+          },
+          computed: {
+            // 算出 getter 関数
+            reversedMessage: function () {
+              // `this` は vm インスタンスを指します
+              return this.message.split('').reverse().join('')
+            }
+          },
+
+          methods: {
+              reverseMessage: function () {
+                return this.message.split('').reverse().join('')
+              }
+            }
+        })
+    </script>
+</body>
+</html>

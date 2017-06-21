@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <script src="https://unpkg.com/vue"></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="example-1">
+        <input
+                type="checkbox"
+                id="boxex"
+                v-model="toggle"
+                v-bind:true-value="a"
+                v-bind:false-value="b">
+        <label for="boxex">{{ toggle }}</label>
+    </div>
+
+    <div id="example-2">
+        <input type="radio" id="one" v-model="pick" v-bind:value="a">
+        <label for="one">1ばん</label>
+        <input type="radio" id="two" v-model="pick" v-bind:value="b">
+        <label for="two">2ばん</label>
+    </div>
+
+    <div id="example-3">
+        <select v-model="selected">
+            <!-- インラインオブジェクトリテラル -->
+            <option v-bind:value="{ number: 111 }">123</option>
+            <option v-bind:value="{ number: 369 }">333</option>
+            <option v-bind:value="{ number: 510 }">555</option>
+        </select>
+    </div>
+
+    <script>
+            var example1 = new Vue({
+                el: "#example-1",
+                data: {
+                    toggle: this.a,
+                    a: 'そうです',
+                    b: 'ちがいます',
+                },
+            })
+
+            var example2 = new Vue({
+                el: '#example-2',
+                data: {
+                    pick: '',
+                    a: 50,
+                    b: 80,
+                 }
+            })
+
+            var example3 = new Vue({
+                el: '#example-3'
+                data: {
+                    number: 0,
+                }
+            })
+    </script>
+</body>
+</html>

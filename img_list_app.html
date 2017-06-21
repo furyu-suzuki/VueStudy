@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-for="http://www.w3.org/1999/xhtml"
+      xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>画像リストアプリケーション</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+<div id="img-list">
+    <!-- [[ 画像の登録エリア ]] -->
+    <h2> 画像の登録 </h2>
+    <p>
+        <label for="url">URL: </label>
+        <input v-model="new_url" placeholder="input image url" id="url"/>
+        <button type="submit" v-on:click="add_list()">submit</button>
+    </p>
+    <!-- /[[ 画像の登録エリア ]] -->
+
+    <!-- [[ 画像の一覧出力エリア ]] -->
+    <h2> 入力した画像一覧 </h2>
+    <ol>
+        <li v-for="(img, index) in imgs">
+            <!-- それぞれの画像 -->
+            <img v-bind:src='img.url'>
+            <!-- 削除ボタン -->
+            <button type="delete" v-on:click="delete_img(index)">delete</button>
+        </li>
+    </ol>
+    <!-- /[[ 画像の一覧出力エリア ]] -->
+</div>
+
+<script>
+        var vm = new Vue({
+            el: '#img-list',
+            data: {
+                new_url: '',
+                delete_id: 0,
+                imgs: [],
+            },
+            methods: {
+                add_list () { // フォームで入力した画像urlをaddする処理
+                    this.imgs.push({url: this.new_url})
+                    this.new_url = ''
+                },
+                delete_img (num) { // 押したボタンに対応する画像を削除する処理
+                    console.log(num)
+                    this.imgs.splice(num, 1)
+                }
+            }
+        })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/vue"></script>
+    <title>Title</title>
+</head>
+<body>
+    <div class="static"
+         v-bind:class="{ active: isActive, 'text-danger': hasError }">
+    </div>
+
+    <div id="app" v-bind:class="classObject"></div>
+
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+              isActive: true,
+              <!--hasError: false-->
+              'text-danger': false,
+              error: true
+            },
+            computed: {
+              classObject: function () {
+                return {
+                  active: this.isActive && !this.error,
+                  'text-danger': this.error && this.error.type === 'fatal',
+                }
+              }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <script src="https://unpkg.com/vue"></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="example-1">
+        <button v-on:click="counter += 1">Add 1</button>
+        <p>The button above has been clicked {{ counter }} times.</p>
+    </div>
+    <div id="example-2">
+        <!-- `greet` は、あらかじめ定義したメソッドの名前 -->
+        <button v-on:click="greet">Greet</button>
+    </div>
+    <div id="example-3">
+        <input v-on:keyup.enter="enter">
+    </div>
+    <div id="example-4">
+        <!-- Alt + C -->
+        <input @keyup.alt.67="clear">
+        <!-- Ctrl + Click -->
+    </div>
+    <div id="example-5" @click.left.ctrl="doSomething">
+        Do something
+    </div>
+
+
+    <script>
+        var example1 = new Vue({
+          el: '#example-1',
+          data: {
+            counter: 0
+          }
+        })
+
+        var example2 = new Vue({
+          el: '#example-2',
+          data: {
+            name: 'Vue.js'
+          },
+          // `methods` オブジェクトの下にメソッドを定義する
+          methods: {
+            greet: function (event) {
+              // メソッド内の `this` は、 Vue インスタンスを参照します
+              alert('Hello ' + this.name + '!')
+              // `event` は、ネイティブ DOM イベントです
+              if (event) {
+                alert(event.target.tagName)
+              }
+            }
+          }
+        })
+
+        var example3 = new Vue({
+          el: '#example-3',
+          methods: {
+            enter: function (event) {
+              alert('enter!')
+            }
+          }
+        })
+
+        var example4 = new Vue({
+          el: '#example-4',
+          methods: {
+            clear: function (event) {
+              alert('Alt + c')
+            }
+          }
+        })
+
+        var example5 = new Vue({
+          el: '#example-5',
+          methods: {
+            doSomething: function (event) {
+              alert('Ctrl + click')
+            }
+          }
+        })
+    </script>
+</body>
+</html>
